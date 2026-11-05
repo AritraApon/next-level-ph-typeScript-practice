@@ -27,7 +27,7 @@ class Employee {
     }
 }
 const employee1 = new Employee('mir', 10000);
-console.log(employee1.discribe());
+// console.log(employee1.discribe())
 // new class make for inheritance
 class Manager extends Employee {
     teamMemberCount;
