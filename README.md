@@ -98,3 +98,13 @@
 * `override` Keyword
 * Polymorphism with Inheritance
 * Method Overriding with Different Implementations
+
+## v12. Abstraction
+
+* Abstraction Basics
+* Abstract Classes
+* Abstract Methods
+* Abstract Properties
+* Implementing Abstract Methods
+* Abstract Class with Inheritance
+
