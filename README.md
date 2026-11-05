@@ -56,3 +56,18 @@
 * Type Assertion with API Response
 * Type Narrowing with Promise
 * Error Handling with `try/catch`
+
+---
+---
+---
+# OOP (Object-Oriented Programming)
+
+![OOP Four Pillars](https://i.ibb.co.com/QvkHp5cd/image.png)
+
+## v8. OOP Basics
+
+* Four Pillars of OOP
+* Class and Object
+* `this` Keyword
+* Constructor
+* `new` Keyword
