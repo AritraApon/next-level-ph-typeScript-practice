@@ -7,7 +7,7 @@ const getValue = (value) => {
 };
 getValue('abc');
 getValue(123);
-//! getValue(true) ==> not support
+//! getValue(true) ==> not support this is the problem how can i solve this proble lets watch . 
 // todo example 2 :
 const warpInArray = (value) => {
     return [value];
@@ -38,6 +38,6 @@ const postRes = {
     success: false,
     statusCode: 500,
 };
-// console.log('user res', userRes)
-console.log('Post res', postRes);
 export {};
+// console.log('user res', userRes)
+// console.log('Post res', postRes)

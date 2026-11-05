@@ -11,7 +11,7 @@ const getValue = (value: string | number) =>{
 
 getValue('abc');
 getValue(123);
-//! getValue(true) ==> not support
+//! getValue(true) ==> not support this is the problem how can i solve this proble lets watch . 
 
 
 
@@ -87,4 +87,4 @@ const postRes : postResponse={
 
 }
 // console.log('user res', userRes)
-console.log('Post res', postRes)
+// console.log('Post res', postRes)

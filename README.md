@@ -49,3 +49,11 @@
 * Generic Constraints (`extends`)
 * Generic with Union Types
 
+## v7. Generic Type with Promise
+
+* Generic API Response (`ApiResponse<T>`)
+* Generic Promise (`Promise<T>`)
+* Fetch API with Generic Type
+* Type Assertion with API Response
+* Type Narrowing with Promise
+* Error Handling with `try/catch`
