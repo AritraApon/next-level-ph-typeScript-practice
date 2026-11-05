@@ -80,3 +80,13 @@
 * `readonly` Properties
 * Getters and Setters (`get`, `set`)
 * Data Hiding and Validation
+
+## v10. Inheritance
+
+* Inheritance Basics
+* `extends` Keyword
+* `super()` Keyword
+* Protected Properties in Inheritance
+* Constructor Chaining
+* Method Overriding
+* Inheritance with Getters and Setters

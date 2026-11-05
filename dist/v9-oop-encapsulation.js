@@ -30,10 +30,10 @@ class Employee {
     }
 }
 const employee1 = new Employee('mir', 10000);
-// employee1._baseSalary = 'abc' //* protected
-// employee1.baseSalary = -4000, 
-console.log(employee1);
-console.log(employee1.name);
-console.log(employee1.baseSalary);
-console.log(employee1.salaryWithBonus);
 export {};
+// employee1._baseSalary = 'abc' //* protected
+// employee1.baseSalary = -4000,
+// console.log(employee1)
+// console.log(employee1.name)
+// console.log(employee1.baseSalary)
+// console.log(employee1.salaryWithBonus)
