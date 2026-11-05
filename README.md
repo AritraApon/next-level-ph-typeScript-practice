@@ -29,3 +29,23 @@
 * Non-null Assertion (`!`)
 * Const Assertion (`as const`)
 
+## v5. Type Narrowing
+
+* Type Narrowing Basics
+* Type Guards
+* `typeof` Type Guard
+* Truthiness Narrowing
+* `instanceof` Type Guard
+* `in` Operator
+* Custom Type Guards
+
+## v6. Generic Types
+
+* Generic Type Basics
+* Generic Functions
+* Generic Type Parameters
+* Generic Interfaces
+* Generic Type Aliases
+* Generic Constraints (`extends`)
+* Generic with Union Types
+
