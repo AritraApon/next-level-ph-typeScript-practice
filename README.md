@@ -71,3 +71,12 @@
 * `this` Keyword
 * Constructor
 * `new` Keyword
+
+
+## v9. Encapsulation
+
+* Encapsulation Basics
+* Access Modifiers (`public`, `private`, `protected`)
+* `readonly` Properties
+* Getters and Setters (`get`, `set`)
+* Data Hiding and Validation

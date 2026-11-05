@@ -4,6 +4,6 @@ import './v3-type-hierarchy.js'
 import './v4-type-assertion.js'
 import './v6-type-generic.js'
 import './v8-oop-class-&-object.js'
-
+import './v9-oop-encapsulation.js'
 
 
