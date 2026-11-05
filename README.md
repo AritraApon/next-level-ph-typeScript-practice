@@ -20,8 +20,7 @@
 
 ## v3. Type Hierarchy Diagram
 
-![TypeScript Type Hierarchy Diagram](https://i.ibb.co.com/Xr9d2Kzb/Screenshot-2026-11-04-232132.png)
-
+<img width="851" height="637" alt="Screenshot 2026-11-04 232132" src="https://github.com/user-attachments/assets/9b6b299d-51b0-4c36-9358-7057ad391711" />
 
 ## v4. Type Assertion
 
