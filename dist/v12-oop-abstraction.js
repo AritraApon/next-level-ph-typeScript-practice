@@ -25,5 +25,5 @@ class Developer extends Employee {
     }
 }
 const developer = new Developer('Apon', 30000);
-console.log(developer.calculatePay(), developer.isRegisterEntry());
 export {};
+// console.log(developer.calculatePay() , developer.isRegisterEntry())
