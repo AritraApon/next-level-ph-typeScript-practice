@@ -1,21 +1,861 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeScript Learning Journey</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       * 1. GLOBAL STYLES
+    ========================= */
+    :root {
+      --bg: #080d18;
+      --surface: #101a2b;
+      --surface-light: #14223a;
+      --border: #24344f;
+      --primary: #3b82f6;
+      --primary-light: #60a5fa;
+      --text: #e5edff;
+      --muted: #94a3b8;
+      --green: #34d399;
+      --purple: #a78bfa;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
+
+    /* =========================
+       * 2. NAVBAR
+    ========================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 24, 0.9);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-content {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .logo span {
+      color: var(--primary-light);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-light);
+    }
+
+    .nav-badge {
+      background: #142b4c;
+      color: var(--primary-light);
+      border: 1px solid #254a78;
+      padding: 7px 13px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* =========================
+       * 3. HERO SECTION
+    ========================= */
+    .hero {
+      padding: 90px 0 65px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at top, #16345e 0%, transparent 65%);
+    }
+
+    .hero-label {
+      display: inline-block;
+      color: var(--primary-light);
+      background: #142b4c;
+      border: 1px solid #254a78;
+      border-radius: 30px;
+      padding: 7px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(35px, 6vw, 62px);
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 span {
+      color: var(--primary-light);
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .stat {
+      min-width: 125px;
+      background: rgba(16, 26, 43, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px 22px;
+    }
+
+    .stat h3 {
+      font-size: 24px;
+      color: var(--primary-light);
+    }
+
+    .stat p {
+      font-size: 12px;
+    }
+
+    /* =========================
+       * 4. SECTION HEADER
+    ========================= */
+    .section {
+      padding: 55px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 30px;
+    }
+
+    .section-heading span {
+      color: var(--primary-light);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(25px, 4vw, 34px);
+      margin-top: 8px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    /* =========================
+       * 5. ROADMAP CARDS
+    ========================= */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 35px rgba(37, 99, 235, 0.08);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card-number {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: #172f52;
+      color: var(--primary-light);
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      font-size: 17px;
+    }
+
+    .card ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 20px;
+      color: #b7c5dc;
+      font-size: 13px;
+    }
+
+    .card li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--primary-light);
+      font-size: 11px;
+    }
+
+    .card code {
+      font-family: "JetBrains Mono", monospace;
+      color: #93c5fd;
+      font-size: 12px;
+    }
+
+    .reference {
+      display: inline-flex;
+      margin-top: 20px;
+      color: var(--primary-light);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .reference:hover {
+      color: white;
+    }
+
+    /* =========================
+       * 6. DIVIDER
+    ========================= */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 20px 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    /* =========================
+       * 7. OOP FOUR PILLARS
+    ========================= */
+    .oop-banner {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 25px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .oop-banner img {
+      display: block;
+      width: 100%;
+      max-height: 350px;
+      object-fit: contain;
+      padding: 15px;
+    }
+
+    .oop-card .card-number {
+      background: #25204c;
+      color: var(--purple);
+    }
+
+    .oop-card li::before {
+      color: var(--purple);
+    }
+
+    /* =========================
+       * 8. PRACTICE AREA
+    ========================= */
+    .practice-section {
+      padding: 65px 0 90px;
+    }
+
+    .practice-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .practice-header {
+      padding: 20px 25px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .practice-header h3 {
+      font-size: 16px;
+    }
+
+    .live-badge {
+      color: var(--green);
+      background: #10332e;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* ! Your TypeScript practice root */
+    #root {
+      min-height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      background-color: #84a7ec;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+    }
+
+    /* =========================
+       * 9. FOOTER
+    ========================= */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer span {
+      color: var(--primary-light);
+    }
+
+    /* =========================
+       * 10. RESPONSIVE DESIGN
+    ========================= */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 65px 0 45px;
+      }
+
+      .roadmap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 40px 0;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero-stats {
+        gap: 10px;
+      }
+
+      .stat {
+        min-width: 100px;
+        padding: 12px;
+      }
+
+      .practice-header {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <h1 >Hello ! TypeScript 👋</h1>
-    <div id="root"  style="
-    min-height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-    background-color: #84a7ec;
-    box-sizing: border-box;
-  "></div>
-    <script type="module" src="./dist/script.js"></script>
+
+  <!-- =========================
+       * NAVBAR
+  ========================= -->
+  <nav class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="logo">Type<span>Script.</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#typescript">TypeScript</a></li>
+        <li><a href="#oop">OOP</a></li>
+        <li><a href="#utility">Utility Types</a></li>
+        <li><a href="#practice">Practice</a></li>
+      </ul>
+
+      <span class="nav-badge">MY LEARNING JOURNEY</span>
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       * HERO
+  ========================= -->
+  <header class="hero">
+    <div class="container">
+      <span class="hero-label">MY DEVELOPER JOURNEY 🚀</span>
+
+      <h1>
+        Learning <span>TypeScript</span><br>
+        One Step at a Time.
+      </h1>
+
+      <p>
+        A personal learning space where I document my TypeScript concepts,
+        OOP principles, practical projects, and coding experiments.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <h3>14</h3>
+          <p>Learning Topics</p>
+        </div>
+
+        <div class="stat">
+          <h3>6</h3>
+          <p>Utility Types</p>
+        </div>
+
+        <div class="stat">
+          <h3>4</h3>
+          <p>OOP Pillars</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- =========================
+       * TYPESCRIPT ROADMAP
+  ========================= -->
+  <main>
+
+    <section class="section" id="typescript">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>01 — Fundamentals</span>
+          <h2>TypeScript Learning Roadmap</h2>
+          <p>Building a strong foundation in TypeScript step by step.</p>
+        </div>
+
+        <div class="roadmap-grid">
+
+          <!-- v1 -->
+          <article class="card">
+            <div class="card-top">
+              <div class="card-number">01</div>
+              <h3>Type Basics</h3>
+            </div>
+            <ul>
+              <li>Basic Types</li>
+              <li>Literal Types</li>
+              <li>Union Types</li>
+              <li>Object Types</li>
+            </ul>
+          </article>
+
+          <!-- v2 -->
+          <article class="card">
+            <div class="card-top">
+              <div class="card-number">02</div>
+              <h3>Type vs Interface</h3>
+            </div>
+            <ul>
+              <li>Type Alias vs Interface</li>
+              <li>Primitive Types and Literals</li>
+              <li>Union Types</li>
+              <li>Interface Extension (<code>extends</code>)</li>
+              <li>Type Intersection (<code>&</code>)</li>
+              <li>Interface Declaration Merging</li>
+              <li>Type Alias Duplicate Identifiers</li>
+            </ul>
+          </article>
+
+          <!-- v3 -->
+          <article class="card">
+            <div class="card-top">
+              <div class="card-number">03</div>
+              <h3>Type Hierarchy Diagram</h3>
+            </div>
+
+            <p style="color: var(--muted); font-size: 13px;">
+              Understanding the TypeScript type system through a visual hierarchy.
+            </p>
+
+            <a class="reference"
+               href="https://github.com/user-attachments/assets/9b6b299d-51b0-4c36-9358-7057ad391711"
+               target="_blank">
+              View Type Hierarchy ↗
+            </a>
+          </article>
+
+          <!-- v4 -->
+          <article class="card">
+            <div class="card-top">
+              <div class="card-number">04</div>
+              <h3>Type Assertion</h3>
+            </div>
+            <ul>
+              <li>Type Assertion with <code>as</code></li>
+              <li>Non-null Assertion (<code>!</code>)</li>
+              <li>Const Assertion (<code>as const</code>)</li>
+            </ul>
+          </article>
+
+          <!-- v5 -->
+          <article class="card">
+            <div class="card-top">
+              <div class="card-number">05</div>
+              <h3>Type Narrowing</h3>
+            </div>
+            <ul>
+              <li>Type Narrowing Basics</li>
+              <li>Type Guards</li>
+              <li><code>typeof</code> Type Guard</li>
+              <li>Truthiness Narrowing</li>
+              <li><code>instanceof</code> Type Guard</li>
+              <li><code>in</code> Operator</li>
+              <li>Custom Type Guards</li>
+            </ul>
+          </article>
+
+          <!-- v6 -->
+          <article class="card">
+            <div class="card-top">
+              <div class="card-number">06</div>
+              <h3>Generic Types</h3>
+            </div>
+            <ul>
+              <li>Generic Type Basics</li>
+              <li>Generic Functions</li>
+              <li>Generic Type Parameters</li>
+              <li>Generic Interfaces</li>
+              <li>Generic Type Aliases</li>
+              <li>Generic Constraints (<code>extends</code>)</li>
+              <li>Generic with Union Types</li>
+            </ul>
+          </article>
+
+          <!-- v7 -->
+          <article class="card">
+            <div class="card-top">
+              <div class="card-number">07</div>
+              <h3>Generic Type with Promise</h3>
+            </div>
+            <ul>
+              <li>Generic API Response (<code>ApiResponse&lt;T&gt;</code>)</li>
+              <li>Generic Promise (<code>Promise&lt;T&gt;</code>)</li>
+              <li>Fetch API with Generic Type</li>
+              <li>Type Assertion with API Response</li>
+              <li>Type Narrowing with Promise</li>
+              <li>Error Handling with <code>try/catch</code></li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         * OOP SECTION
+    ========================= -->
+    <div class="divider">OBJECT ORIENTED PROGRAMMING</div>
+
+    <section class="section" id="oop">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>02 — Object Oriented Programming</span>
+          <h2>Understanding OOP in TypeScript</h2>
+          <p>Learning the four pillars of Object-Oriented Programming.</p>
+        </div>
+
+        <div class="oop-banner">
+          <img
+            src="https://i.ibb.co.com/QvkHp5cd/image.png"
+            alt="Four Pillars of Object Oriented Programming"
+          >
+        </div>
+
+        <div class="roadmap-grid">
+
+          <!-- v8 -->
+          <article class="card oop-card">
+            <div class="card-top">
+              <div class="card-number">08</div>
+              <h3>OOP Basics</h3>
+            </div>
+            <ul>
+              <li>Four Pillars of OOP</li>
+              <li>Class and Object</li>
+              <li><code>this</code> Keyword</li>
+              <li>Constructor</li>
+              <li><code>new</code> Keyword</li>
+            </ul>
+          </article>
+
+          <!-- v9 -->
+          <article class="card oop-card">
+            <div class="card-top">
+              <div class="card-number">09</div>
+              <h3>Encapsulation</h3>
+            </div>
+            <ul>
+              <li>Encapsulation Basics</li>
+              <li>Access Modifiers (<code>public</code>, <code>private</code>, <code>protected</code>)</li>
+              <li><code>readonly</code> Properties</li>
+              <li>Getters and Setters (<code>get</code>, <code>set</code>)</li>
+              <li>Data Hiding and Validation</li>
+            </ul>
+          </article>
+
+          <!-- v10 -->
+          <article class="card oop-card">
+            <div class="card-top">
+              <div class="card-number">10</div>
+              <h3>Inheritance</h3>
+            </div>
+            <ul>
+              <li>Inheritance Basics</li>
+              <li><code>extends</code> Keyword</li>
+              <li><code>super()</code> Keyword</li>
+              <li>Protected Properties in Inheritance</li>
+              <li>Constructor Chaining</li>
+              <li>Method Overriding</li>
+              <li>Inheritance with Getters and Setters</li>
+            </ul>
+          </article>
+
+          <!-- v11 -->
+          <article class="card oop-card">
+            <div class="card-top">
+              <div class="card-number">11</div>
+              <h3>Polymorphism</h3>
+            </div>
+            <ul>
+              <li>Polymorphism Basics</li>
+              <li>Method Overriding</li>
+              <li><code>override</code> Keyword</li>
+              <li>Polymorphism with Inheritance</li>
+              <li>Method Overriding with Different Implementations</li>
+            </ul>
+          </article>
+
+          <!-- v12 -->
+          <article class="card oop-card">
+            <div class="card-top">
+              <div class="card-number">12</div>
+              <h3>Abstraction</h3>
+            </div>
+            <ul>
+              <li>Abstraction Basics</li>
+              <li>Abstract Classes</li>
+              <li>Abstract Methods</li>
+              <li>Abstract Properties</li>
+              <li>Implementing Abstract Methods</li>
+              <li>Abstract Class with Inheritance</li>
+            </ul>
+          </article>
+
+          <!-- v13 -->
+          <article class="card oop-card">
+            <div class="card-top">
+              <div class="card-number">13</div>
+              <h3>OOP Practical Project — Dynamic Form Builder</h3>
+            </div>
+            <ul>
+              <li>Abstract Class (<code>UIElement</code>)</li>
+              <li>Abstract Method (<code>render()</code>)</li>
+              <li>Inheritance with <code>extends</code></li>
+              <li>Constructor and <code>super()</code></li>
+              <li>Access Modifiers</li>
+              <li>Method Overriding</li>
+              <li>Array of Objects (<code>UIElement[]</code>)</li>
+              <li>Polymorphism with <code>render()</code></li>
+              <li>Dynamic HTML Rendering (<code>innerHTML</code>)</li>
+              <li>DOM Manipulation</li>
+              <li>Class Composition</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         * UTILITY TYPES
+    ========================= -->
+    <div class="divider">ADVANCED TYPESCRIPT</div>
+
+    <section class="section" id="utility">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>03 — Advanced Concepts</span>
+          <h2>Utility Types</h2>
+          <p>Using built-in TypeScript utilities to transform existing types.</p>
+        </div>
+
+        <div class="roadmap-grid">
+
+          <article class="card">
+            <div class="card-top">
+              <div class="card-number">14</div>
+              <h3>Utility Types</h3>
+            </div>
+
+            <ul>
+              <li><code>Partial&lt;T&gt;</code> — Makes all properties optional</li>
+              <li><code>Required&lt;T&gt;</code> — Makes all properties required</li>
+              <li><code>Record&lt;Keys, Type&gt;</code> — Creates an object type with specific keys and value types</li>
+              <li><code>Pick&lt;T, Keys&gt;</code> — Selects specific properties from a type</li>
+              <li><code>Omit&lt;T, Keys&gt;</code> — Removes specific properties from a type</li>
+              <li><code>Readonly&lt;T&gt;</code> — Makes all properties read-only</li>
+            </ul>
+
+            <a
+              class="reference"
+              href="https://www.typescriptlang.org/docs/handbook/utility-types.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Official TypeScript Documentation ↗
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         * PRACTICE AREA
+    ========================= -->
+    <section class="practice-section" id="practice">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>04 — Hands-on Practice</span>
+          <h2>My TypeScript Playground</h2>
+          <p>Experiment with TypeScript concepts and see your output here.</p>
+        </div>
+
+        <div class="practice-box">
+
+          <div class="practice-header">
+            <h3>⚡ Live Practice Area</h3>
+            <span class="live-badge">● READY TO CODE</span>
+          </div>
+
+          <!-- ! TypeScript output will render here -->
+          <div id="root"></div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       * FOOTER
+  ========================= -->
+  <footer>
+    <div class="container">
+      Built with 💙 while learning <span>TypeScript</span>.
+      <br>
+      Keep Learning. Keep Building. Keep Growing. 🚀
+    </div>
+  </footer>
+
+
+  <!-- ! TypeScript compiled JavaScript -->
+  <script type="module" src="./dist/script.js"></script>
+
 </body>
 </html>

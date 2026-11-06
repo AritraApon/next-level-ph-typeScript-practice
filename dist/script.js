@@ -9,3 +9,4 @@ import './v10-oop-inheritance.js';
 import './v11-oop-polymorphism.js';
 import './v12-oop-abstraction.js';
 import './v13-oop-funny-minidom-form.js';
+import './v14-utility-type.js';

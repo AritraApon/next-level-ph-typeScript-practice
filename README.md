@@ -124,3 +124,14 @@
 - Class Composition (Form with Input and Button)
 
 ![Dynamic From Builder](https://i.ibb.co.com/QvwyZ18b/image.png)
+
+## v14. Utility Types
+
+* `Partial<T>` — Makes all properties optional
+* `Required<T>` — Makes all properties required
+* `Record<Keys, Type>` — Creates an object type with specific keys and value types
+* `Pick<T, Keys>` — Selects specific properties from a type
+* `Omit<T, Keys>` — Removes specific properties from a type
+* `Readonly<T>` — Makes all properties read-only
+
+**Reference:** [TypeScript Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
